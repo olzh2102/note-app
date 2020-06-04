@@ -6,28 +6,26 @@ import {
 	FaRegCalendar,
 } from 'react-icons/fa'
 
+const SidebarItem = ({ ui, title }) => (
+	<li>
+		<span>{ui}</span>
+		<span>{title}</span>
+	</li>
+)
+
 const Sidebar = () => {
+	const items = {
+		Inbox: <FaInbox />,
+		Calendar: <FaRegCalendar />,
+		'Next 7 Days': <FaRegCalendarAlt />,
+	}
+
 	return (
 		<div className="sidebar" data-testid="sidebar">
 			<ul className="sidebar__generic">
-				<li>
-					<span>
-						<FaInbox />
-					</span>
-					<span>Inbox</span>
-				</li>
-				<li>
-					<span>
-						<FaRegCalendar />
-					</span>
-					<span>Calendar</span>
-				</li>
-				<li>
-					<span>
-						<FaRegCalendarAlt />
-					</span>
-					<span>Next 7 Days</span>
-				</li>
+				{Object.entries(items).map((item) => (
+					<SidebarItem ui={item[1]} title={item[0]} />
+				))}
 			</ul>
 
 			<div className="sidebar__middle">
